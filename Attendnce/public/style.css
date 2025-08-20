@@ -1,0 +1,236 @@
+/* public/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --light-gray: #f8f9fa;
+    --border-color: #dee2e6;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-gray);
+}
+
+.card {
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1) !important;
+}
+
+/* --- Calendar Specific Styles --- */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-header {
+    font-weight: 600;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: #6c757d;
+}
+
+.calendar-day {
+    aspect-ratio: 1 / 1; /* Make cells square */
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    background-color: #e9ecef;
+    transform: scale(1.03);
+}
+
+.calendar-day.other-month {
+    background-color: var(--light-gray);
+    cursor: default;
+    opacity: 0.6;
+}
+
+.calendar-day.other-month:hover {
+    transform: none;
+    background-color: var(--light-gray);
+}
+
+
+.calendar-day .day-number {
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+.calendar-day.today .day-number {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.attendance-summary {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+    align-self: flex-end;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.present-dot { background-color: var(--success-color); }
+.absent-dot { background-color: var(--danger-color); }
+
+/* --- Monthly Summary Styles --- */
+.employee-summary {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#monthly-summary-list > .employee-summary:last-child {
+    border-bottom: none;
+}
+
+.employee-summary .summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.employee-summary .name {
+    font-weight: 500;
+}
+
+.delete-employee-btn {
+    border: none;
+    background: none;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.delete-employee-btn:hover {
+    color: var(--danger-color);
+    background-color: #f8d7da;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* --- Report Styles --- */
+#report-output h5 {
+    color: var(--primary-color);
+}
+
+/* Add this new rule to your existing style.css */
+
+.office-leave-day {
+    background-color: #e9ecef !important;
+    cursor: not-allowed;
+    color: #6c757d;
+}
+
+.office-leave-day:hover {
+    transform: none; /* Disable hover effect */
+}
+
+/* Optional: Add a subtle pattern to make it clearer */
+.office-leave-day {
+    background-image: repeating-linear-gradient(
+        45deg,
+        #e9ecef,
+        #e9ecef 10px,
+        #dee2e6 10px,
+        #dee2e6 11px
+    );
+}
+/* Add these styles to your existing style.css */
+
+/* Calendar day styles */
+.calendar-day.leave-day {
+    background-color: #f8f9fa; /* Light grey for leave days */
+    cursor: not-allowed;
+}
+
+.calendar-day.leave-day .day-number {
+    color: #6c757d; /* Muted text color */
+}
+
+/* Dots for different attendance statuses */
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+}
+.present-dot { background-color: #198754; } /* Green */
+.absent-dot { background-color: #dc3545; } /* Red */
+.permission-dot { background-color: #0dcaf0; } /* Cyan/Info */
+
+
+/* Employee summary card adjustments for more stats */
+.employee-summary {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+.employee-summary:last-child {
+    border-bottom: none;
+}
+.employee-summary .summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.employee-summary .name {
+    font-weight: bold;
+}
+.delete-employee-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 0.25rem;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+.delete-employee-btn:hover {
+    opacity: 1;
+}
+
+/* Modal styling improvements */
+#modal-body .employee-attendance-row {
+    background-color: #f8f9fa;
+}
